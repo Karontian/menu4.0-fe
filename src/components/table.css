@@ -1,0 +1,24 @@
+.row.table{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.row.column{
+    flex: 1 0 0;
+    /* overflow: inherit; */
+    border: 1px solid #ddd; 
+    border-radius: 35px;
+    margin: 5px;
+    text-align: center;
+    padding: 10px; /* added padding */
+    transition: all 0.3s ease; /* added transition */
+    box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.16); /* added shadow */
+    max-width: fit-content;
+
+}
+
+table {
+    margin: 0 auto;
+}

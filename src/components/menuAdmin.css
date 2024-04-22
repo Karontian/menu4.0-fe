@@ -1,0 +1,77 @@
+
+
+.row {
+    display: flex;
+    /* max-height: 100vh;
+    overflow: hidden; */
+
+}
+
+.column{
+    flex: 1 0 0;
+    /* overflow: inherit; */
+    border: 1px solid #ddd; /* lighter color */
+    border-radius: 35px;
+    margin: 5px;
+    text-align: center;
+    padding: 10px; /* added padding */
+    transition: all 0.3s ease; /* added transition */
+    box-shadow: 0px 50px 100px rgba(0, 0, 0, 0.16); /* added shadow */
+
+}
+
+.column:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* added hover effect */
+}
+
+
+table,
+th,
+td {
+    border: 1px solid #ddd; /* lighter color */
+    max-height: 1px;
+    padding: 3px;
+    max-width: 160px;
+    overflow: auto;
+}
+
+.tableMonitor {
+    max-height: 400px; /* adjust this value to your needs */
+    overflow: auto;  
+}
+.mainMenu{
+    max-height: 600px; /* adjust this value to your needs */
+    overflow: hidden;  
+    padding: 10px; /* added padding */
+
+
+}
+
+
+/* Styles for tablets */
+@media screen and (max-width: 900px) {
+    .row {
+        flex-direction: column;
+    }
+
+    .column {
+        flex: none;
+        width: 100%;
+    }
+}
+
+/* Styles for phones */
+@media screen and (max-width: 600px) {
+    .row {
+        flex-direction: column;
+    }
+
+    .column {
+        flex: none;
+        width: 100%;
+    }
+}
+
+.billing-true {
+    background-color: #333;
+}
