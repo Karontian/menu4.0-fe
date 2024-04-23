@@ -12,7 +12,7 @@ const TableHistory = ()=>{
     const getHistory = async()=>{
         // console.log('GETTING HISTORY')
         try {
-            const dayClose = await axios.get('http://192.168.100.44:3003/history')
+            const dayClose = await axios.get('https://menubackend.netlify.app/.netlify/functions/app/history')
             setHistoryTables(dayClose.data)
         } catch (err) {
             console.log(err)
@@ -25,7 +25,7 @@ const TableHistory = ()=>{
         const sec = prompt('Your deleting sensitive information, pls enter admin password')
         if(Number(sec) === 666){
             try {
-                const deletion = await axios.delete(`http://192.168.100.44:3003/admin/deleteHistory`)
+                const deletion = await axios.delete(`https://menubackend.netlify.app/.netlify/functions/app/admin/deleteHistory`)
                 console.log(deletion)
             } catch (err) {
                 console.log(err)
