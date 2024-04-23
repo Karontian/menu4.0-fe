@@ -14,7 +14,7 @@ const ClientHome = () =>{
         e.preventDefault()
         console.log('TABLE REQUESTED')
         try {
-            const response = await axios.post(`http://192.168.100.44:3003/newTable`)
+            const response = await axios.post(`https://menubackend.netlify.app/.netlify/functions/app/newTable`)
             setId(response.data.id)
             setTableRequested(true)
             console.log(response.data)
