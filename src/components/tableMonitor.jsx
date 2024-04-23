@@ -25,10 +25,10 @@ const TableMonitor = (props) => {
     const onBilling = async (tableId, index)=> {
         console.log('BILLING ', tableId, index)
         try {
-            const table = await axios.get(`http://192.168.100.44:3003/${tableId}`)
+            const table = await axios.get(`https://menubackend.netlify.app/.netlify/functions/app/${tableId}`)
             const tableItems = table.data.order
             setBillingIndex(index)
-            const billedON = await axios.put(`http://192.168.100.44:3003/paidTurnON/${tableId}`, {paid: true})
+            const billedON = await axios.put(`https://menubackend.netlify.app/.netlify/functions/app/paidTurnON/${tableId}`, {paid: true})
     
         } catch (err) {
             console.log(err)
@@ -39,7 +39,7 @@ const TableMonitor = (props) => {
     const onTableAdd = async ()=>{
         console.log('ON TABLE ADD')
         try {
-        const response = await axios.post(`http://192.168.100.44:3003/newTable`)
+        const response = await axios.post(`https://menubackend.netlify.app/.netlify/functions/app/newTable`)
         console.log(response.data.id)
         const tablesCopy = [...tables]
         const newTable = [
@@ -118,7 +118,7 @@ const TableMonitor = (props) => {
     const onAttend = async (e, index, id )=>{
         console.log(id)
         try {
-            const update = await axios.put(`http://192.168.100.44:3003/attReqOff/${id}`)
+            const update = await axios.put(`https://menubackend.netlify.app/.netlify/functions/app/attReqOff/${id}`)
             console.log(update)
         } catch (err) {
             console.log(err)
@@ -128,7 +128,7 @@ const TableMonitor = (props) => {
     const onItemDelete = async(table, item)=>{
         console.log('ON ITEM DELETE', table, item)
         try {
-            const deletion = await axios.delete(`http://192.168.100.44:3003/deleteItems/${table}?item=${item}`)
+            const deletion = await axios.delete(`https://menubackend.netlify.app/.netlify/functions/app/deleteItems/${table}?item=${item}`)
             console.log(deletion)
         } catch (err) {
             console.log(err)
@@ -143,8 +143,8 @@ const TableMonitor = (props) => {
                 tableId: table._id,
                 tableRate: table.rate
             }));            
-            const dayPost = await axios.post('http://192.168.100.44:3003/history', {dayTables: newDayTables, dayTotal: dayTotal})
-            const tablesDeletePromises = dayTables.map((table)=> axios.delete(`http://192.168.100.44:3003/tableDelete/${table._id}`))
+            const dayPost = await axios.post('https://menubackend.netlify.app/.netlify/functions/app/history', {dayTables: newDayTables, dayTotal: dayTotal})
+            const tablesDeletePromises = dayTables.map((table)=> axios.delete(`https://menubackend.netlify.app/.netlify/functions/app/tableDelete/${table._id}`))
             Promise.all(tablesDeletePromises)
                 .then(() => console.log('All tables deleted'))
                 .catch((error) => console.error('Error deleting tables:', error));
