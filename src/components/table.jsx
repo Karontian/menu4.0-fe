@@ -20,7 +20,7 @@ const Table = ()=>{
     useEffect(()=>{
         const fetchTables= async()=>{
             try {
-                const response = await axios.get(`http://192.168.100.44:3003/${id}`)
+                const response = await axios.get(`https://menubackend.netlify.app/.netlify/functions/app/${id}`)
                 const rate = response.data.rate
                 setTotalRate(rate)
                 const paidStatus = response.data.paid
@@ -49,7 +49,7 @@ const Table = ()=>{
             if(isFetchingMenu) return
             setIsFetchingMenu(true)
             try {
-                const response = await axios.get(`http://192.168.100.44:3003/menuItems`)
+                const response = await axios.get(`https://menubackend.netlify.app/.netlify/functions/app/menuItems`)
                 const menuItemsfromDb = response.data.menuItems
                 // console.log(menuItemsfromDb)
                 setCurrentMenu(menuItemsfromDb)
@@ -72,7 +72,7 @@ const Table = ()=>{
     const onCallAttention = async(id)=>{
         console.log('ON ATTENTION REQ')
         try {
-            const update = await axios.put(`http://192.168.100.44:3003/${id}`)
+            const update = await axios.put(`https://menubackend.netlify.app/.netlify/functions/app/${id}`)
             console.log(update)
             alert('Attention is on the way, pls hold!')
         } catch (err) {
@@ -83,7 +83,7 @@ const Table = ()=>{
     const onOrder = async(id, name, rate)=>{
         console.log('ON ORDER', id, name, rate)
         try {
-            const itemAddition = await axios.put(`http://192.168.100.44:3003/addItems/${id}`, {name, rate})
+            const itemAddition = await axios.put(`https://menubackend.netlify.app/.netlify/functions/app/addItems/${id}`, {name, rate})
             console.log(itemAddition)
         } catch (err) {
             console.log(err)
@@ -101,10 +101,10 @@ const Table = ()=>{
         try {
             console.log(orderedItems)
             // eslint-disable-next-line no-unused-vars
-            const billedON = await axios.put(`http://192.168.100.44:3003/paidTurnON/${id}`, {paid: true})
+            const billedON = await axios.put(`https://menubackend.netlify.app/.netlify/functions/app/paidTurnON/${id}`, {paid: true})
             const tableRate = orderedItems.reduce((total, nextItem)=> total + nextItem.itemRate, 0)
             // eslint-disable-next-line no-unused-vars
-            const dbTableRate = await axios.put(`http://192.168.100.44:3003/calculateRate/${id}`, {tableRate: tableRate})
+            const dbTableRate = await axios.put(`https://menubackend.netlify.app/.netlify/functions/app/calculateRate/${id}`, {tableRate: tableRate})
             console.log(tableRate)
             setTotalRate(tableRate)
             setonPayClick(true)

@@ -62,7 +62,7 @@ const TableMonitor = (props) => {
     const getTables = async()=>{
         try {
             // const response = await axios.get('http://192.168.100.43:3002/')
-            const response = await axios.get(`https://nogitserverlesstest.netlify.app/.netlify/functions/app/`);
+            const response = await axios.get(`https://menubackend.netlify.app/.netlify/functions/app/`);
             const data = response.data;
             // console.log(data)
             // for (let i = 0; i < data.length; i++) {
