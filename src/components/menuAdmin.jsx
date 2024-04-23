@@ -7,7 +7,7 @@ const MenuAdmin = () =>{
 //*************************************************************** */
                //MENU ITEMS AND ADD ITEMS FUNCTIONS
 /*************************************************************** */
-axios.defaults.baseURL = 'http://192.168.100.44:3003/'
+axios.defaults.baseURL = 'https://menubackend.netlify.app/.netlify/functions/app'
 
 
     const [menuItems, setMenuItems] = useState([])
@@ -49,7 +49,7 @@ axios.defaults.baseURL = 'http://192.168.100.44:3003/'
             isGettingMenu = true;
             try {
                 console.log('REQUESTING MENU');
-                const newMenu = await axios.get(`http://192.168.100.44:3003/menuItems`);
+                const newMenu = await axios.get(`https://menubackend.netlify.app/.netlify/functions/app/menuItems`);
                 // const newMenu = await axios.get(`https://nogitserverlesstest.netlify.app/.netlify/functions/app/`);
 
                 const menu = newMenu.data;
@@ -71,7 +71,7 @@ axios.defaults.baseURL = 'http://192.168.100.44:3003/'
             if(isNaN(parseInt(rate))){
                 alert('Rate needs to be a value in $')
             }
-            const addition = await axios.post(`http://192.168.100.44:3003/menuItemAdd`, {name, rate})
+            const addition = await axios.post(`https://menubackend.netlify.app/.netlify/functions/app/menuItemAdd`, {name, rate})
             setNewName('')
             setNewRate('')
         } catch (e) {
@@ -82,7 +82,7 @@ axios.defaults.baseURL = 'http://192.168.100.44:3003/'
     const onMenuReset = async()=>{//DELETE ALL ITEMS
         console.log('MENU RESET')
         try {
-            const reset = await axios.delete(`http://192.168.100.44:3003/menuReset`)
+            const reset = await axios.delete(`https://menubackend.netlify.app/.netlify/functions/app/menuReset`)
             console.log(reset)
         } catch (e) {
             console.log(e)
@@ -93,7 +93,7 @@ axios.defaults.baseURL = 'http://192.168.100.44:3003/'
         console.log('ITEM DELETE', item)
         try {
 
-            const deletion = await axios.delete(`http://192.168.100.44:3003/itemDelete/${item}`)
+            const deletion = await axios.delete(`https://menubackend.netlify.app/.netlify/functions/app/${item}`)
             console.log(deletion)
 
         } catch (e) {
@@ -121,7 +121,7 @@ axios.defaults.baseURL = 'http://192.168.100.44:3003/'
         }
             console.log('ON EDITION SAVE')
         try {
-            const updatedItem = await axios.put(`http://192.168.100.44:3003/itemUpdate/${id}`, {
+            const updatedItem = await axios.put(`https://menubackend.netlify.app/.netlify/functions/app/${id}`, {
                 name: newEditedName,
                 rate: newEditedRate
         
