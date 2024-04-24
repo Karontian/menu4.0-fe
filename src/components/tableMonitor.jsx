@@ -29,8 +29,13 @@ const TableMonitor = (props) => {
             const tableItems = table.data.order
             setBillingIndex(index)
             const tableRate = tableItems.reduce((total, nextItem)=> total + nextItem.itemRate, 0)
-            const billedON = await axios.put(`https://menubackend.netlify.app/.netlify/functions/app/paidTurnON/${tableId}`, {paid: true})
-            const dbTableRate = await axios.put(`https://menubackend.netlify.app/.netlify/functions/app/calculateRate/${tableId}`, {tableRate: tableRate})
+            const [billedON, dbTableRate] = await Promise.all([
+                axios.put(`https://menubackend.netlify.app/.netlify/functions/app/paidTurnON/${tableId}`, {paid: true}),
+                axios.put(`https://menubackend.netlify.app/.netlify/functions/app/calculateRate/${tableId}`, {tableRate: tableRate})
+            ])
+            
+            // const billedON = await axios.put(`https://menubackend.netlify.app/.netlify/functions/app/paidTurnON/${tableId}`, {paid: true})
+            // const dbTableRate = await axios.put(`https://menubackend.netlify.app/.netlify/functions/app/calculateRate/${tableId}`, {tableRate: tableRate})
 
     
         } catch (err) {

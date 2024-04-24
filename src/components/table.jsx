@@ -22,6 +22,7 @@ const Table = ()=>{
             try {
                 const response = await axios.get(`https://menubackend.netlify.app/.netlify/functions/app/${id}`)
                 const rate = response.data.rate
+                console.log(rate)
                 setTotalRate(rate)
                 const paidStatus = response.data.paid
                 if(paidStatus &&  !alertShown){
